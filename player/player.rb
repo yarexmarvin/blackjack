@@ -10,7 +10,7 @@ class Player
 
   def make_deposit(amount)
     if (amount > deposit)
-      raise "Not enought money in the deposit!"
+      raise "#{@name}: Not enought money in the deposit! Game Over!"
     else
       @deposit -= amount
       true
