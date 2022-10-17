@@ -1,2 +1,2 @@
-require_relative "player"
+require_relative 'player'
 class User < Player; end

@@ -4,12 +4,12 @@ class Player
 
   def initialize(name)
     @name = name
-    @deposit = 20
+    @deposit = 100
     @cards = []
   end
 
   def make_deposit(amount)
-    if (amount > deposit)
+    if amount > deposit
       raise "#{@name}: Not enought money in the deposit! Game Over!"
     else
       @deposit -= amount
@@ -18,14 +18,10 @@ class Player
   end
 
   def take_card(card)
-    if(@cards.size < 3)
-        @cards << card
-    end
+    @cards << card if @cards.size < 3
   end
 
   def take_award(award)
     @deposit += award
   end
-
-
 end

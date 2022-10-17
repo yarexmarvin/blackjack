@@ -7,7 +7,7 @@ class Bank
     @money += amount
   end
 
-  def reset 
+  def reset
     @money = 0
   end
 

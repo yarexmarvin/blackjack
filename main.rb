@@ -6,10 +6,10 @@ require_relative "./player/dealer"
 NAMES = [*(2..10), "J", "Q", "K", "A"].freeze
 ICONS = ["♥", "♠", "♣", "♦"].freeze
 
-USER = "user"
-DEALER = "dealer"
-NEXT_GAME = "next_game"
-END_GAME = "end_game"
+USER = "user".freeze
+DEALER = "dealer".freeze
+NEXT_GAME = "next_game".freeze
+END_GAME = "end_game".freeze
 
 class Main
   def initialize
@@ -27,6 +27,7 @@ class Main
 
     user_name = gets.chomp
     return unless user_name != ""
+
     @user = User.new(user_name)
     @dealer = Dealer.new("Dealer")
     game_initialization
@@ -34,14 +35,17 @@ class Main
 
   def game_initialization
     generate_cards
-    puts @move
-
     @user.cards = []
     @dealer.cards = []
-    puts @user.deposit
-    puts @dealer.deposit
+
+    puts "====================================="
+    puts "Your deposit: #{@user.deposit}"
+    puts "Dealer's deposit: #{@dealer.deposit}"
+    puts "====================================="
+
     player_took_card(@user, 2)
     player_took_card(@dealer, 2)
+
     begin
       @bank.reset
       player_make_deposit(@user, 10)
@@ -52,14 +56,10 @@ class Main
       return
     end
     @move = USER
-    puts @move
-    puts @user.inspect
-    puts @dealer.inspect
     game
   end
 
   def game
-    puts "here"
     loop do
       case @move
       when USER
@@ -131,12 +131,14 @@ class Main
   def dealer_move
     current_result = count_cards(@dealer)
 
-    if (current_result >= 17)
-      @move = USER
-    else
+    puts "=============="
+    puts "Dealer's move!"
+    puts "=============="
+
+    if current_result <= 17
       player_took_card(@dealer)
-      @move = USER
     end
+    @move = USER
   end
 
   def count_cards(player)
@@ -184,23 +186,23 @@ class Main
 
     winners = []
 
-    if (user_score == dealer_score)
+    if user_score == dealer_score
       winners << @user
       winners << @dealer
-    elsif (user_score == 21)
+    elsif user_score == 21
       winners << @user
-    elsif (dealer_score == 21)
+    elsif dealer_score == 21
       winners << @dealer
-    elsif (user_score < 21 && dealer_score < 21)
+    elsif user_score < 21 && dealer_score < 21
       who_won = user_score > dealer_score ? @user : @dealer
       winners << who_won
-    elsif (user_score > 21 && dealer_score < 21)
+    elsif user_score > 21 && dealer_score < 21
       winners << @dealer
-    elsif (dealer_score > 21 && user_score < 21)
+    elsif dealer_score > 21 && user_score < 21
       winners << @user
     end
 
-    if (winners.size == 2)
+    if winners.size == 2
       puts "======"
       puts "Ничья"
       puts "======"
