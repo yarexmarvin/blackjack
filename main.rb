@@ -93,7 +93,6 @@ class Main
   end
 
   def user_move
-    
     print "My cards:"
     @user.cards.each { |card| print "#{card.show} " }
     puts
@@ -101,7 +100,7 @@ class Main
     options = ["Пропустить", "Добавить карту", "Открыть карты"]
     puts "================"
     puts "Choose your move:"
-    options.each { |option| puts option }
+    options.each_with_index { |option, index| puts "#{index + 1} - #{option}" }
     puts "================"
     user_move = gets.chomp
 
