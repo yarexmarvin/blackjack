@@ -93,9 +93,14 @@ class Main
 
   def user_move
     print "My cards:"
-    @user.cards.each { |card| print "#{card.show} " }
+    @user.cards.each { |card| print " #{card.show} " }
     puts
     puts "My score: #{count_cards(@user)}"
+    puts "================="
+    print "Dealer's cards: "
+    @dealer.cards.each { |card| print "*" }
+    puts
+    puts "================="
     options = ["Пропустить", "Добавить карту", "Открыть карты"]
     puts "================"
     puts "Choose your move:"
@@ -165,12 +170,12 @@ class Main
   def end_game
     puts "================="
     print "Dealer's cards: "
-    @dealer.cards.each { |card| print "#{card.show} " }
+    @dealer.cards.each { |card| print " #{card.show} " }
     puts
     puts "================="
     puts "================="
     print "Your cards: "
-    @user.cards.each { |card| print "#{card.show} " }
+    @user.cards.each { |card| print " #{card.show} " }
     puts
     puts "================="
 
