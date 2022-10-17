@@ -77,7 +77,6 @@ class Main
   end
 
   def next_game
-    puts @move
     puts "Would you like to play next game?"
     puts "1 - yes"
     puts "2 - no"
