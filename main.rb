@@ -156,7 +156,7 @@ class Main
     end
 
     if selectA.size.positive?
-      option1 = result + 10
+      option1 = result + 11
       option2 = result + 1
       return option1 if option2 > 21
       return option2 if option1 > 21
@@ -251,11 +251,11 @@ class Main
         when Integer
           @cards << Card.new(name, icon, name)
         when "J"
-          @cards << Card.new(name, icon, 2)
+          @cards << Card.new(name, icon, 10)
         when "Q"
-          @cards << Card.new(name, icon, 3)
+          @cards << Card.new(name, icon, 10)
         when "K"
-          @cards << Card.new(name, icon, 4)
+          @cards << Card.new(name, icon, 10)
         when "A"
           @cards << Card.new(name, icon, 11)
         end
